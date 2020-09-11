@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -24,6 +24,8 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
+
+
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -36,9 +38,9 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
+playing = True
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player("Dwight, Assistant to the Regional Manager", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +51,24 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while playing:
+
+    print(player.current_room)
+    print("\n")
+
+    cmd = input(" >>> ")
+    if cmd == "n":
+        print("moving North")
+    elif cmd == "s":
+        print("moving South")
+    elif cmd == "e":
+        print("moving East")
+    elif cmd == "w":
+        print("moving West")
+    # if ["n", "s", "e", "w"]:
+    #     print(f"moving {cmd}")
+    elif cmd == "q":
+        playing = False
+        print("You're fired")
+    else: 
+        print(f"I do not understand {cmd}")
